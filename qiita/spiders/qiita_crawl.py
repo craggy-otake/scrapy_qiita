@@ -16,7 +16,7 @@ class QiitaCrawlSpider(scrapy.Spider):
             items['url'] = response.url
             items['text'] = w3lib.html.remove_tags(text.extract())
             with open('output.jsonl', 'a', encoding='utf-8') as writer:
-                json.dump(items,writer)
+                json.dump(items, writer, ensure_ascii=False)
                 writer.write('\n')
 
         next_pages = response.xpath('//*[contains(@href,"qiita.com")]/@href')
